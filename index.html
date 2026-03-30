@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instagram Web Clone – Share photos, watch Reels, connect with friends, explore trending content. A fully functional, sleek Instagram experience built with HTML5, CSS3, JavaScript, jQuery &amp; Bootstrap.">
+    <meta name="keywords" content="instagram clone, instagram web, photo sharing, reels, stories, explore, social media, bootstrap, html5, css3, javascript, jquery, responsive, mobile friendly">
+    <meta name="author" content="SAMER SAEID">
+    <meta name="robots" content="index, follow">
+    <title>Instagram • The home of real moments</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+    <!-- TOP NAV -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top shadow-sm">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center fw-bold fs-3" href="#" onclick="return false;">
+                <i class="bi bi-camera-fill me-2 text-danger"></i> Instagram
+            </a>
+            
+            <!-- Search -->
+            <form class="d-none d-md-flex flex-grow-1 mx-4" style="max-width: 280px;" onsubmit="fakeSearch(event)">
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
+                    <input id="searchInput" type="text" class="form-control bg-light border-0 shadow-none" placeholder="Search" aria-label="Search">
+                </div>
+            </form>
+            
+            <!-- Desktop Icons -->
+            <div class="d-none d-lg-flex align-items-center gap-4">
+                <a href="#" onclick="return false;" class="text-dark fs-3"><i class="bi bi-house-door-fill"></i></a>
+                <a href="#" onclick="return false;" class="text-dark fs-3"><i class="bi bi-search"></i></a>
+                <a href="#" onclick="return false;" class="text-dark fs-3"><i class="bi bi-compass"></i></a>
+                <a href="#" onclick="return false;" class="text-dark fs-3"><i class="bi bi-film"></i></a>
+                <a href="#" onclick="return false;" class="text-dark fs-3"><i class="bi bi-shop"></i></a>
+                <a href="#" onclick="return false;" class="text-dark fs-3 position-relative">
+                    <i class="bi bi-chat-dots"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge bg-danger rounded-pill">4</span>
+                </a>
+                <a href="#" onclick="return false;" class="text-dark fs-3 position-relative">
+                    <i class="bi bi-heart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge bg-danger rounded-pill">9+</span>
+                </a>
+                <a href="#" onclick="showCreateModal()" class="text-dark fs-3"><i class="bi bi-plus-square"></i></a>
+                
+                <!-- Profile -->
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center" id="profileDropdown" data-bs-toggle="dropdown">
+                        <img src="https://i.pravatar.cc/32?u=samer" alt="Samer Saeid" class="rounded-circle" width="32" height="32">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                        <li><a class="dropdown-item" href="#" onclick="return false;">👤 Profile</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="return false;">📚 Saved</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="return false;">⚙️ Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="fakeLogout(event)">🚪 Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Mobile Bottom Nav will be added via JS -->
+            <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+                <i class="bi bi-list fs-3"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container-fluid pt-5 mt-5 pb-5">
+        <div class="row justify-content-center">
+            
+            <!-- LEFT NAV (Desktop) -->
+            <div class="col-lg-2 d-none d-lg-block sticky-top" style="top: 70px; height: calc(100vh - 70px); overflow-y:auto;">
+                <div class="d-flex flex-column gap-3 mt-4">
+                    <a href="#" onclick="return false;" class="d-flex align-items-center text-dark fs-5"><i class="bi bi-house-door-fill me-3"></i> Home</a>
+                    <a href="#" onclick="return false;" class="d-flex align-items-center text-dark fs-5"><i class="bi bi-search me-3"></i> Search</a>
+                    <a href="#" onclick="return false;" class="d-flex align-items-center text-dark fs-5"><i class="bi bi-compass me-3"></i> Explore</a>
+                    <a href="#" onclick="return false;" class="d-flex align-items-center text-dark fs-5"><i class="bi bi-film me-3"></i> Reels</a>
+                    <a href="#" onclick="return false;" class="d-flex align-items-center text-dark fs-5"><i class="bi bi-chat-dots me-3"></i> Messages</a>
+                    <a href="#" onclick="return false;" class="d-flex align-items-center text-dark fs-5"><i class="bi bi-heart me-3"></i> Notifications</a>
+                    <a href="#" onclick="showCreateModal()" class="d-flex align-items-center text-dark fs-5"><i class="bi bi-plus-square me-3"></i> Create</a>
+                    <a href="#" onclick="return false;" class="d-flex align-items-center text-dark fs-5"><i class="bi bi-person-circle me-3"></i> Profile</a>
+                </div>
+            </div>
+            
+            <!-- CENTER FEED -->
+            <div class="col-lg-6 col-md-10">
+                
+                <!-- Stories -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-3">
+                        <div id="storiesContainer" class="d-flex gap-3 overflow-auto stories-scroll pb-2">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FEED -->
+                <div id="feedContainer">
+                    <!-- Posts populated by JS -->
+                </div>
+            </div>
+            
+            <!-- RIGHT SUGGESTIONS -->
+            <div class="col-lg-3 d-none d-xl-block sticky-top" style="top: 70px;">
+                <div class="card border-0 shadow-sm mt-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-semibold">Suggested for you</h6>
+                            <a href="#" onclick="return false;" class="small text-primary">See All</a>
+                        </div>
+                        <div id="suggestionsContainer" class="d-flex flex-column gap-3">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trending Reels teaser -->
+                <div class="mt-4 text-center">
+                    <small class="text-muted">Trending Reels 🔥</small>
+                    <div class="mt-2 d-flex justify-content-center gap-2 flex-wrap" id="reelTeaser">
+                        <!-- JS populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MOBILE BOTTOM NAV -->
+    <nav id="mobileBottomNav" class="d-lg-none navbar navbar-light bg-white border-top fixed-bottom">
+        <div class="container-fluid d-flex justify-content-around py-1">
+            <a href="#" onclick="return false;" class="text-dark fs-3"><i class="bi bi-house-door-fill"></i></a>
+            <a href="#" onclick="return false;" class="text-dark fs-3"><i class="bi bi-search"></i></a>
+            <a href="#" onclick="return false;" class="text-dark fs-3"><i class="bi bi-plus-square"></i></a>
+            <a href="#" onclick="return false;" class="text-dark fs-3"><i class="bi bi-film"></i></a>
+            <a href="#" onclick="return false;" class="text-dark fs-3 position-relative">
+                <i class="bi bi-heart"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge bg-danger rounded-pill">9+</span>
+            </a>
+            <a href="#" onclick="return false;" class="d-flex align-items-center">
+                <img src="https://i.pravatar.cc/32?u=samer" alt="" class="rounded-circle" width="28" height="28">
+            </a>
+        </div>
+    </nav>
+    
+    <!-- CREATE POST MODAL -->
+    <div class="modal fade" id="createModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create new post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="modalPreview" class="border rounded-3 mb-3 d-flex align-items-center justify-content-center bg-light" style="height: 300px; font-size: 4rem; color: #ccc;">
+                        📸
+                    </div>
+                    <textarea id="postCaption" class="form-control" rows="3" placeholder="Write a caption..."></textarea>
+                    <div class="mt-3">
+                        <button onclick="fakePhotoUpload()" class="btn btn-outline-primary w-100">📸 Choose from device</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="createPost()" class="btn btn-primary w-100">Share</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="bg-white border-top py-4 mt-5">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start gap-3">
+                <p class="mb-0 text-muted small">© Copyright SAMER SAEID. All rights reserved.</p>
+                <p class="mb-0 text-muted small">Made by ♥️ <a href="https://bio.link/samer" target="_blank" class="text-decoration-none text-primary fw-semibold">SAMER SAEID</a></p>
+                <div class="d-flex gap-3 flex-wrap justify-content-center">
+                    <a href="#" onclick="return false;" class="text-muted small">About</a>
+                    <a href="#" onclick="return false;" class="text-muted small">Help</a>
+                    <a href="#" onclick="return false;" class="text-muted small">Press</a>
+                    <a href="#" onclick="return false;" class="text-muted small">API</a>
+                    <a href="#" onclick="return false;" class="text-muted small">Privacy</a>
+                    <a href="#" onclick="return false;" class="text-muted small">Terms</a>
+                </div>
+                <small class="text-muted">Fully responsive • SEO optimized • Works on every device</small>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
